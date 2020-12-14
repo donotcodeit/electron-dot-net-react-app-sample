@@ -1,14 +1,18 @@
-import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
-import { Comp1 } from "./components/Comp1";
+import React, { useCallback, useState } from "react";
 
 import "./custom.css"
 
 export const App = () => {
+    const [cnt, setCnt] = useState(0);
+    const click = useCallback(() => {
+        console.log("increase");
+        setCnt(o => o + 1);
+    }, []);
+
     return (
-        <Switch>
-            <Route path="/c1" exact component={Comp1} />
-            <Redirect from="*" to="/c1" />
-        </Switch>
-    );
+        <div>
+            <h1>Test</h1>
+            <div onClick={click}>Count: {cnt} (click to increase)</div>
+        </div>
+    )
 }
